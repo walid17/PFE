@@ -19,6 +19,7 @@ declare var jsPDF: any;
   styleUrls: ['./list-rooms.component.css']
 })
 export class ListRoomsComponent implements OnInit {
+  
 c:Client;
   rooms: any[] = [];
   reservation: Reservation ={
@@ -44,7 +45,7 @@ client: this.c
   //     console.log(params);
   // });
    this.activateRoute.params.subscribe(x=>{
-     console.log(x);
+    console.log(x);
    })
   
    
@@ -90,12 +91,12 @@ client: this.c
           'double',
         'NBR_ADUT':
           2,
-        'NBR_ENF':
+        'img': '../../../assets/img/bg-img/3.jpg' , 'NBR_ENF':
           1
       },
       {
         'ID':
-          20,
+          22,
         'CHAMBRE_NR':
           '2',
         'DESCRIPTION':
@@ -130,12 +131,12 @@ client: this.c
           'double',
         'NBR_ADUT':
           2,
-        'NBR_ENF':
+        'img': '../../../assets/img/bg-img/2.jpg' , 'NBR_ENF':
           1
       },
       {
         'ID':
-          20,
+          23,
         'CHAMBRE_NR':
           '2',
         'DESCRIPTION':
@@ -170,11 +171,11 @@ client: this.c
           'double',
         'NBR_ADUT':
           2,
-        'NBR_ENF':
+        'img': '../../../assets/img/bg-img/4.jpg' , 'NBR_ENF':
           1
       }, {
         'ID':
-          20,
+          21,
         'CHAMBRE_NR':
           '2',
         'DESCRIPTION':
@@ -209,7 +210,7 @@ client: this.c
           'double',
         'NBR_ADUT':
           2,
-        'NBR_ENF':
+        'img': '../../../assets/img/bg-img/7.jpg' , 'NBR_ENF':
           1
       });
 
@@ -227,19 +228,21 @@ client: this.c
     if (baseContext.reservation.checkIn && baseContext.reservation.checkOut) {
       jQuery('#checkInDate').datepicker('setDate', Utils.convertToDate(baseContext.reservation.checkIn));
       jQuery('#checkOutDate').datepicker('setDate', Utils.convertToDate(baseContext.reservation.checkOut));
-
-      this.roomServices.getRoomAvailable()
-        .subscribe(
-          (data: Chambre[]) => {
-            this.rooms = data;
-          }
-        );
+     
+      // this.roomServices.getRoomAvailable()
+      //   .subscribe(
+      //     (data: Chambre[]) => {
+      //       this.rooms = data;
+      //     }
+      //   );
     }
   }
 
 
-  reserver() {
-    console.log(this.rooms);
+  reserver(id?) {
+    console.log(id)
+    this.router.navigate(['reservations/add']);
+    /*console.log(this.rooms);
 
     let price = this.getPriceFromRoomsSelected();
     this.facture = this.factureServices.convertToFacture(this.reservation.client, price);
@@ -254,7 +257,7 @@ client: this.c
         }
       );
 
-
+*/
   }
 
   getPriceFromRoomsSelected() {

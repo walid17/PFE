@@ -35,11 +35,11 @@
           <div class="row justify-content-between align-items-end">
             <div class="col-6 col-md-2 col-lg-3">
               <label for="checkIn">Check In</label>
-              <input type="date" class="form-control" [(ngModel)]="reservation.checkIn" name="checkIn" id="checkIn">
+              <input type="text" autocomplete="off" #checkIn class="form-control" [(ngModel)]="reservation.checkIn" name="checkIn" id="checkIn">
             </div>
             <div class="col-6 col-md-2 col-lg-3">
               <label for="checkOut">Check Out</label>
-              <input type="date" class="form-control" [(ngModel)]="reservation.checkOut" name="checkout-date" id="checkOut">
+              <input type="text"  autocomplete="off" #checkOut class="form-control" [(ngModel)]="reservation.checkOut" name="checkout-date" id="checkOut">
             </div>
             <div class="col-4 col-md-2">
               <label for="room">Room</label>
@@ -75,7 +75,7 @@
               </select>
             </div>
             <div class="col-12 col-md-3">
-              <button type="submit" class="form-control btn roberto-btn w-100"><a href="javascript:" >Check Availability</a></button>
+              <button type="submit" class="form-control btn roberto-btn w-100" >Check Availability</button>
             </div>
           </div>
         </form>
@@ -149,7 +149,7 @@
 
           <!-- Single Service Area -->
           <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="700ms">
-            <img src="../../../assets/img/core-img/icon-4.png" alt="">
+            <img src="url(../../../assets/img/bg-img/16.jpg)" alt="">
             <h5>Restaurant</h5>
           </div>
 

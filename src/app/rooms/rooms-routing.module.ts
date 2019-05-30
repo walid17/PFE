@@ -7,7 +7,7 @@ import {ListRoomsComponent} from './list-rooms/list-rooms.component';
 
 export const routes: Routes = [
   {
-    path: 'list/:res',
+    path: 'list',
     component: ListRoomsComponent
   },
   ];

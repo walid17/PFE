@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {ReservationServices} from '../../shared/service/reservation.service';
 import {Reservation} from '../../shared/models/reservation';
 import {FormGroup} from '@angular/forms';
@@ -12,7 +12,8 @@ declare var jQuery: any;
   styleUrls: ['./home-slider.component.css']
 })
 export class HomeSliderComponent implements OnInit {
-
+  @ViewChild('checkOut') checkOut: ElementRef;
+  @ViewChild('checkIn') checkIn: ElementRef;
   reservation: Reservation;
   
   constructor(private reservationServices: ReservationServices ,private router: Router) {
@@ -20,26 +21,16 @@ export class HomeSliderComponent implements OnInit {
   }
 
   ngOnInit() {
- 
-    // jQuery('#checkOut').datepicker({
-    //   minDate: new Date(),
-    //   onSelect: function (el) {
-    //     console.log(el);
-    //     // this.reservation.checkOut = el;
-    //     jQuery('#checkOut').datepicker('option', 'minDate', new Date(el));
-    //   }
+    jQuery('#checkOut').datepicker({
+      minDate: new Date(),
       
-
-    // });
-    // jQuery('#checkIn').datepicker({
-    //   minDate: new Date(),
-    //   onSelect: function (el) {
-    //     console.log(el);
-    //     // 
-    //     jQuery('#checkOut').datepicker('option', 'minDate', new Date(el));
-    //     this.reservation.checkIn = el;
-    //   }
-    // });
+    });
+    jQuery('#checkIn').datepicker({
+      minDate: new Date(),
+      onSelect: function (el) {
+       jQuery('#checkOut').datepicker('option', 'minDate', new Date(el));
+      }
+    });
 
     /* this.reservationServices.getReservations()
         .subscribe( data => {
@@ -52,13 +43,11 @@ export class HomeSliderComponent implements OnInit {
   ); */
   }
 
-  addReservation() {
-    console.log(this.reservation);
-    let id = 2;
-    let navigationExtras: NavigationExtras = {
-      queryParams: this.reservation
-  };
-    this.router.navigate(['/rooms/list',id])
+  addReservation() {    
+    console.log(this.checkIn.nativeElement.innerHTML);
+  let reservation = JSON.stringify(this.reservation);
+  localStorage.setItem('reservation',reservation);
+    this.router.navigate(['/rooms/list'])
     
 /*
     this.reservationServices.add(this.reservation)
