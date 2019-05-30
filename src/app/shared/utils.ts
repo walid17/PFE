@@ -41,22 +41,22 @@ export class Utils {
   public static generate_cutomPDF(facture: Facture) {
 
     var
-      comapnyJSON = {
-        CompanyName: 'jhgfty',
-        CompanyGSTIN: 'kjnij',
-        CompanyState: 'Active',
-        CompanyPAN: 'B76C238B7E',
+      facturePDF = {
+        CODE: facture.CODE,
+        NOM_PRENOM: facture.NOM_PRENOM,
+        ADRESSE: facture.ADRESSE,
+        TEL: facture.TEL,
         CompanyAddressLine1: 'kkkll',
         CompanyAddressLine2: 'ABCDEFGD P.O., NEDUMBASSERY',
         CompanyAddressLine3: 'COCHIN',
         PIN: '683584',
-        companyEmail: 'knn@gmail.com',
+        CIN: facture.CIN,
         companyPhno: '+565983241',
       };
 
     var
       customer_BillingInfoJSON = {
-        CustomerName: facture.NOM_PRENOM,
+        CustomerName: 'facture.NOM_PRENOM',
         CustomerGSTIN: '37B76C238B7E1Z5',
         CustomerState: 'KERALA (09)',
         CustomerPAN: 'B76C238B7E',
@@ -78,7 +78,7 @@ export class Utils {
         CustomerAddressLine1: 'ABCDEFGD HOUSE,IX/642-D',
         CustomerAddressLine2: 'ABCDEFGD P.O., NEDUMBASSERY',
         CustomerAddressLine3: 'COCHIN',
-        PIN: '683584',
+        CIN: facture.CIN,
         CustomerEmail: 'abcd@gmail.com',
         CustomerPhno: '+918189457845',
       };
@@ -144,44 +144,44 @@ export class Utils {
     //pdf.addImage(agency_logo.src, 'PNG', logo_sizes.centered_x, _y, logo_sizes.w, logo_sizes.h);
     doc.addImage(company_logo.src, 'PNG', startX, startY += 50, company_logo.w, company_logo.h);
 
-    doc.textAlign(comapnyJSON.CompanyName, {align: 'left'}, startX, startY += 15 + company_logo.h);
+    doc.textAlign(facturePDF.CODE, {align: 'left'}, startX, startY += 15 + company_logo.h);
     doc.setFontSize(fontSizes.NormalFontSize);
-    doc.textAlign('GSTIN', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
+    doc.textAlign('NOM Client', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
     doc.setFontType('normal');
     // var w = doc.getStringUnitWidth('GSTIN') * NormalFontSize;
-    doc.textAlign(comapnyJSON.CompanyGSTIN, {align: 'left'}, 80, startY);
+    doc.textAlign(facturePDF.NOM_PRENOM, {align: 'left'}, 80, startY);
 
     doc.setFontType('bold');
-    doc.textAlign('STATE', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
+    doc.textAlign('ADRESSE', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
     doc.setFontType('normal');
-    doc.textAlign(comapnyJSON.CompanyState, {align: 'left'}, 80, startY);
+    doc.textAlign(facturePDF.ADRESSE, {align: 'left'}, 80, startY);
 
     doc.setFontType('bold');
-    doc.textAlign('PAN', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
+    doc.textAlign('TEL', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
     doc.setFontType('normal');
-    doc.textAlign(comapnyJSON.CompanyPAN, {align: 'left'}, 80, startY);
+    doc.textAlign(facturePDF.TEL, {align: 'left'}, 80, startY);
 
     // doc.setFontType('bold');
     // doc.textAlign("Address", {align: "left"}, startX, startY+=lineSpacing.NormalSpacing);
     // doc.setFontType('normal');
-    // doc.textAlign(comapnyJSON.CompanyAddressLine1, {align: "left"}, 80, startY);
-    // doc.textAlign(comapnyJSON.CompanyAddressLine2, {align: "left"}, 80, startY+=lineSpacing.NormalSpacing);
-    // doc.textAlign(comapnyJSON.CompanyAddressLine3, {align: "left"}, 80, startY+=lineSpacing.NormalSpacing);
+    // doc.textAlign(facturePDF.CompanyAddressLine1, {align: "left"}, 80, startY);
+    // doc.textAlign(facturePDF.CompanyAddressLine2, {align: "left"}, 80, startY+=lineSpacing.NormalSpacing);
+    // doc.textAlign(facturePDF.CompanyAddressLine3, {align: "left"}, 80, startY+=lineSpacing.NormalSpacing);
 
     doc.setFontType('bold');
-    doc.textAlign('PIN', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
+    doc.textAlign('CIN', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
     doc.setFontType('normal');
-    doc.textAlign(comapnyJSON.PIN, {align: 'left'}, 80, startY);
+    doc.textAlign(facturePDF.CIN, {align: 'left'}, 80, startY);
 
     doc.setFontType('bold');
     doc.textAlign('EMAIL', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
     doc.setFontType('normal');
-    doc.textAlign(comapnyJSON.companyEmail, {align: 'left'}, 80, startY);
+    doc.textAlign(facturePDF.CODE, {align: 'left'}, 80, startY);
 
     doc.setFontType('bold');
     doc.textAlign('Phone: ', {align: 'left'}, startX, startY += lineSpacing.NormalSpacing);
     doc.setFontType('normal');
-    doc.textAlign(comapnyJSON.companyPhno, {align: 'left'}, 80, startY);
+    doc.textAlign(facturePDF.companyPhno, {align: 'left'}, 80, startY);
 
     var tempY = InitialstartY;
 
@@ -220,7 +220,7 @@ export class Utils {
 
     doc.setFontSize(fontSizes.Head2TitleFontSize);
     doc.setFontType('bold');
-    doc.textAlign('TAX INVOICE', {align: 'center'}, startX, startY += lineSpacing.NormalSpacing + 2);
+    doc.textAlign('Facture', {align: 'center'}, startX, startY += lineSpacing.NormalSpacing + 2);
 
     doc.setFontSize(fontSizes.NormalFontSize);
     doc.setFontType('bold');
@@ -409,7 +409,7 @@ export class Utils {
     // var w = doc.getStringUnitWidth('GSTIN') * NormalFontSize;
     doc.textAlign(invoiceJSON.TotalAmnt, {align: 'left'}, rightcol2, startY);
     doc.setFontType('bold');
-    doc.textAlign('For ' + comapnyJSON.CompanyName + ',', {align: 'center'}, rightcol2, startY += lineSpacing.NormalSpacing + 50);
+    doc.textAlign('For ' + facturePDF.CODE + ',', {align: 'center'}, rightcol2, startY += lineSpacing.NormalSpacing + 50);
     doc.textAlign('Authorised Signatory', {align: 'center'}, rightcol2, startY += lineSpacing.NormalSpacing + 50);
 
     doc.save('invoice.pdf');

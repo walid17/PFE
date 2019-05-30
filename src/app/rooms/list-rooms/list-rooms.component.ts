@@ -22,14 +22,15 @@ export class ListRoomsComponent implements OnInit {
   
 c:Client;
   rooms: any[] = [];
-  reservation: Reservation ={
-    NB_ADULT: 4,
-NB_CHAMBRE: 4,
-NB_ENF: 5,
-checkIn: "2019-05-24",
-checkOut: "2019-05-24",
-client: this.c
-  };
+  reservation= new Reservation();
+//    ={
+//     NB_ADULT: 4,
+// NB_CHAMBRE: 4,
+// NB_ENF: 5,
+// checkIn: "2019-05-24",
+// checkOut: "2019-05-24",
+// client: this.c
+//   };
   facture: Facture;
 
   constructor(private reservationServices: ReservationServices,
@@ -41,11 +42,21 @@ client: this.c
   }
 
   ngOnInit() {
-  //   this.activateRoute.queryParams.subscribe(params => {
-  //     console.log(params);
-  // });
+    let res = localStorage.getItem('reservation')
+    var monReservation = JSON.parse(res);
+    this.reservation.checkIn ="2019-05-24";
+    // monReservation.checkIn  ;
+    
+    this.reservation.checkOut ="2019-05-24";
+    // monReservation.checkOut; 
+    this.reservation.NB_CHAMBRE =monReservation.NB_CHAMBRE ;
+    this.reservation.NB_ADULT =monReservation.NB_ADULT ;
+    this.reservation.NB_ENF =monReservation.NB_ENF ;
+    
+
+ 
    this.activateRoute.params.subscribe(x=>{
-    console.log(x);
+   // console.log(x);
    })
   
    
@@ -240,7 +251,17 @@ client: this.c
 
 
   reserver(id?) {
-    console.log(id)
+    let res = localStorage.getItem('reservation')
+    var monReservation = JSON.parse(res);
+    this.reservation.checkIn ="2019-05-24";
+    // monReservation.checkIn  ;
+    
+    this.reservation.checkOut ="2019-05-24";
+    // monReservation.checkOut; 
+    this.reservation.NB_CHAMBRE =monReservation.NB_CHAMBRE ;
+    this.reservation.NB_ADULT =monReservation.NB_ADULT ;
+    this.reservation.NB_ENF =monReservation.NB_ENF ;
+    console.log(this.reservation);
     this.router.navigate(['reservations/add']);
     /*console.log(this.rooms);
 
