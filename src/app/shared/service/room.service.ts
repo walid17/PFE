@@ -13,6 +13,6 @@ export class RoomServices {
 
 
   getRoomAvailable() {
-    return this.httpClient.get(Config.baseUrl + '/api/get/chambreDispo');
+    return this.httpClient.get(Config.baseUrl + '/api/get/chambre');
   }
 }

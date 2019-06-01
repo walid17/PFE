@@ -51,7 +51,8 @@ export class AddReservationComponent implements OnInit {
 
   addReservation() {
     let res = localStorage.getItem('reservation')
-    var monReservation = JSON.parse(res);
+    var monReservation: Reservation = JSON.parse(res);
+    console.log(monReservation);
     this.reservation.checkIn ="2019-05-24";
     // monReservation.checkIn  ;
     
@@ -60,20 +61,28 @@ export class AddReservationComponent implements OnInit {
     this.reservation.NB_CHAMBRE =monReservation.NB_CHAMBRE ;
     this.reservation.NB_ADULT =monReservation.NB_ADULT ;
     this.reservation.NB_ENF =monReservation.NB_ENF ;
-    console.log(this.reservation);
+    
     this.facture.ADRESSE = this.reservation.client.ADRESSE;
     this.facture.CIN = this.reservation.client.CIN;
     this.facture.NOM_PRENOM = this.reservation.client.NOM_PRENOM;
     this.facture.TEL = this.reservation.client.TEL;
     this.facture.PAYS = this.reservation.client.PAYS;
     this.facture.CODE = '021547';
-    this.facture.TOTAL_HT = 120;
-    this.facture.NET_A_PAYER = 140;
+    this.facture.reservation = this.reservation ;
+    console.log(typeof(monReservation.chambre.PRIX_BASE ))
+    console.log(typeof(this.reservation.client.NBRE_JOURS ))
+    this.facture.TOTAL_HT =monReservation.chambre.PRIX_BASE * this.reservation.client.NBRE_JOURS ;
+   
+    this.facture.TVA = 19;
     this.facture.REMISE = 10;
     this.facture.SOLDE = 130;
+    this.facture.NET_A_PAYER = this.facture.TOTAL_HT  +((this.facture.TOTAL_HT /100) *this.facture.TVA) - this.facture.REMISE;
     this.facture.DATE = new Date().toDateString();
     console.log(this.facture);
     Utils.generate_cutomPDF(this.facture);
+    localStorage.setItem('reservation', null);
+    localStorage.clear();
+    this.router.navigate(['dashboard'])
    // this.reservationServices.reservationObject = this.reservation;
    // this.router.navigate(['/rooms/list']);
   }

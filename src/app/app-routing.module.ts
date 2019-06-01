@@ -25,7 +25,7 @@ export const routes: Routes = [
     canActivate: [],
     children: [
       {
-        path: 'dashboard/',
+        path: '',
         loadChildren: loadHomeModule
       },
       {
@@ -36,13 +36,15 @@ export const routes: Routes = [
         path: 'reservations',
         loadChildren: loadReservationsModule
         
-      },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+      }
 
       /*{
         path: 'manage-voiture',
         loadChildren: loadManageVoitureModule
-      }*/
+      }
+      ,
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+      */
     ],
   },
   /*{

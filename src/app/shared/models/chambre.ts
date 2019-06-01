@@ -1,3 +1,5 @@
+import { Tarif } from './tarif';
+
 export class Chambre {
   ID: number;
   ETAGE: string;
@@ -18,5 +20,9 @@ export class Chambre {
   checkOut: Date;
   image: ImageData;
   checked: boolean;
+  statePromo: boolean ;
+  promoPRIX: number ;
+  promo: Tarif = new Tarif(); 
+
   // equipements: Equipement[] = [];
 }

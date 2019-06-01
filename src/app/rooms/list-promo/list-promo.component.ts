@@ -8,17 +8,18 @@ import {FactureServices} from '../../shared/service/facture.service';
 import {Facture} from '../../shared/models/facture';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Client } from 'src/app/shared/models/client';
+import { Tarif } from 'src/app/shared/models/tarif';
 
 
 declare var jQuery: any;
 declare var jsPDF: any;
 
 @Component({
-  selector: 'app-list-rooms',
-  templateUrl: './list-rooms.component.html',
-  styleUrls: ['./list-rooms.component.css']
+  selector: 'app-list-promo',
+  templateUrl: './list-promo.component.html',
+  styleUrls: ['./list-promo.component.css']
 })
-export class ListRoomsComponent implements OnInit {
+export class listPromoComponent implements OnInit {
   
 c:Client;
   rooms: any = [];
@@ -67,7 +68,15 @@ c:Client;
     x=> {
     console.log(x)
     this.rooms= x ;
-   
+    this.rooms.forEach(element => {
+   //  element.img ='../../../assets/img/bg-img/3.jpg';
+     /* let t  = new Tarif();
+      t.DATE_D = new Date('2019-05-24');
+      t.DATE_F = new Date('2019-05-20');
+      t.PRIX = 110 ;
+     element.promo = t ;
+      */
+    });
 
     }
     )
@@ -276,6 +285,7 @@ chamber = element ;
     this.reservation.NB_CHAMBRE =monReservation.NB_CHAMBRE ;
     this.reservation.NB_ADULT =monReservation.NB_ADULT ;
     this.reservation.NB_ENF =monReservation.NB_ENF ;
+    chamber.PRIX_BASE =chamber.promoPRIX ;
       this.reservation.chambre = chamber ;
     let reservation = JSON.stringify(this.reservation);
     localStorage.setItem('reservation', reservation)

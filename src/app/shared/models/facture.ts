@@ -1,3 +1,5 @@
+import { Reservation } from './reservation';
+
 export class Facture {
   CODE: string;
   TOTAL_HT: number;
@@ -11,5 +13,6 @@ export class Facture {
   CIN: string;
   NBREJOURS: number;
   PAYS: string;
-  
+  TVA: number;
+  reservation:Reservation  = new Reservation();
 }
